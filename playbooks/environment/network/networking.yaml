@@ -9,4 +9,4 @@
       when: |
       ansbile_distribution == "Ubuntu" and
       ethernet is defined and
-      ethernet !=
+      ethernet != ""
