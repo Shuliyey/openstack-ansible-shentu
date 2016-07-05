@@ -1,5 +1,5 @@
 # openstack-ansible-production
-ansible scripts to automatically deploy openstack cluster
+ansible scripts to automatically deploy openstack components/cluster
 
 ## Overview
 This project uses ansible automation tool to deploy openstack compoents
