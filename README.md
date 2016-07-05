@@ -8,7 +8,7 @@ according to the official openstack installation documentation.
 ## Supported Offical Installation Guides
 * Mitaka
   * Ubuntu -
-http://docs.openstack.org/mitaka/install-guide-ubuntu/environment.html
+http://docs.openstack.org/mitaka/install-guide-ubuntu/
   * Redhat -
 http://docs.openstack.org/mitaka/install-guide-rdo/
 

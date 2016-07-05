@@ -1,0 +1,15 @@
+---
+- name: |
+  Ensure network configuration file in /etc/network/interfaces.d/* are sourced
+  lineinfile: |
+  dest=/etc/network/interfaces
+  regexp='^\s*source\s+/etc/network/interfaces\.d/\*\s*$'
+- name: |
+  Ensure "{{ethernet}}" network interface configured set to manual permanently
+  blockinfile:
+    dest: /etc/network/interfaces/{{ethernet}}.conf
+    block: |
+      auto {{ethernet}}
+      iface {{ethernet}} inet manual
+        up ip link set dev $IFACE up
+        down ip link set dev $IFACE down
