@@ -14,4 +14,10 @@
       when: |
         ansbile_distribution == "Ubuntu" and
         ethernet_find is defined and
-        {{ethernet_find.stdout | int }} > 0
+        {{ ethernet_find.stdout | int }} > 0
+    - name:
+      include: ./public-networking-rdo.yaml ethernet={{ethernet}}
+      when: |
+        ansible_os_family == "RedHat" and
+        ethernet_find is defined and
+        {{ ehternet_find.stdout | int }} > 0
