@@ -5,12 +5,13 @@
   become_method: sudo
   tasks:
     - name: check if {{ethernet}} exist
-      shell: ip addr show | grep -E '^[0-9]+: {{ethernet}}:' | wc -l
+      shell: |
+        ip addr show | grep -E '^[0-9]+: {{ethernet}}:' | wc -l
+      when: ethernet is defined and ethernet != ""
       register: ethernet_find
     - name:
       include: ./public-networking-ubuntu.yaml ethernet={{ethernet}}
       when: |
         ansbile_distribution == "Ubuntu" and
-        ethernet is defined and
-        ethernet != "" and
+        ethernet_find is defined and
         {{ethernet_find.stdout | int }} > 0
