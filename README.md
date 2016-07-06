@@ -1,5 +1,12 @@
-# openstack-ansible-production
+# openstack-ansible-神荼
+ansible自动化安装openstack云计算 元件/平台
+
 ansible scripts to automatically deploy openstack components/cluster
+
+* [中文](## 介绍)
+* [English](## English)
+
+## 介绍
 
 ## Overview
 This project uses ansible automation tool to deploy openstack compoents
