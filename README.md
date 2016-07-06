@@ -6,9 +6,12 @@ ansible scripts to automatically deploy openstack components/cluster
 ## 语言/Язык/Language
 
 * [中文](#介绍)
+* [Российская](#Общий обзор)
 * [English](#overview)
 
 ## 介绍
+
+## Общий обзор
 
 ## Overview
 This project uses ansible automation tool to deploy openstack compoents
