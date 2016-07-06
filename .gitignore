@@ -38,6 +38,7 @@ jspm_packages
 
 # Vagrant directories
 .vagrant/
+*.retry
 
 # Ansible configuration files
 ansible.cfg

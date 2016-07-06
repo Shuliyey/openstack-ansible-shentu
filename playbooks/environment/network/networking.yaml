@@ -4,15 +4,17 @@
     ip addr show | grep -E '^[0-9]+: {{ ethernet }}:' | wc -l
   when: ethernet is defined and ethernet != ""
   register: ethernet_find
-- name:
-  include: ./public-networking-ubuntu.yaml ethernet={{ ethernet }}
+- debug: msg="ethernet_find = {{ ethernet_find }}"
+  when: debug
+- name: configuring public network (ubuntu flavour)
+  include: ./public-networking-ubuntu.yaml
   when: |
-    ansbile_distribution == "Ubuntu" and
+    ansible_distribution == "Ubuntu" and
     ethernet_find is defined and
-    {{ ethernet_find.stdout | int }} > 0
-- name:
-  include: ./public-networking-rdo.yaml ethernet={{ ethernet }}
+    ethernet_find.stdout|int > 0
+- name: configuring public network (redhat flavour)
+  include: ./public-networking-rdo.yaml
   when: |
     ansible_os_family == "RedHat" and
     ethernet_find is defined and
-    {{ ehternet_find.stdout | int }} > 0
+    ethernet_find.stdout|int > 0

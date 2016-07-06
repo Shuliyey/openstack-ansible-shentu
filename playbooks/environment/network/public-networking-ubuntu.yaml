@@ -1,16 +1,37 @@
 ---
+- debug: msg="ethernet = {{ ethernet }}"
+  when: debug
 - name: |
-    Ensure network configuration file in /etc/network/interfaces.d/* are sourced
+    ensure network configuration file in /etc/network/interfaces.d/* are sourced
   lineinfile: |
     dest=/etc/network/interfaces
-    regexp='^\s*source\s+/etc/network/interfaces\.d/\*.*$'
+    regexp='^\s*source\s+/etc/network/interfaces\.d/\*(\.cfg)?$'
+    line='source /etc/network/interfaces.d/*\1'
+    backrefs=yes
 - name: |
-    Ensure "{{ ethernet }}" network interface configured set to manual
+    ensure "{{ ethernet }}" network interface configured set to manual
     permanently
   blockinfile:
-    dest: /etc/network/interfaces/{{ethernet}}.cfg
+    dest: /etc/network/interfaces.d/{{ethernet}}.cfg
+    owner: root
+    group: root
+    mode: 0644
     block: |
       auto {{ ethernet }}
       iface {{ ethernet }} inet manual
         up ip link set dev $IFACE up
         down ip link set dev $IFACE down
+    create: yes
+- name: |
+    restarting machine for configuration on network interface {{ethernet}} to
+    take effect
+  shell: reboot
+  async: 0
+  poll: 0
+- name: wait for machine to complete reboot
+  local_action: |
+    wait_for timeout=300 state=started host={{ inventory_hostname }}
+    delay=10 port=22
+  become: no
+- name: test machine is rebooted successfully
+  shell: echo hi

@@ -1,0 +1,13 @@
+---
+- hosts: '{{ hosts }}'
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - debug: msg="networking_type = {{ networking_type }}"
+      when: debug
+    - name: configure network for {{ hosts }}
+      include: ./environment/network/networking.yaml
+      when: |
+        'controller' in networking_type or
+        'compute' in networking_type
