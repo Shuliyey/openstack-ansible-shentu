@@ -13,7 +13,7 @@ ansible scripts to automatically deploy openstack components/cluster
 此项目以openstack官方安装教程为基础, 用ansible来自动化安装openstack云计算元件
 
 ## 支持的官方安装教程
-* Mitaka
+* Liberty
   * 乌班图/优麒麟 (Ubuntu/Ubuntu Kylin) - http://docs.openstack.org/liberty/zh_CN/install-guide-ubuntu/
   * 红帽 (Redhat) - http://docs.openstack.org/liberty/zh_CN/install-guide-rdo/
 
