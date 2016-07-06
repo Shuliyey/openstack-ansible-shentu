@@ -10,7 +10,7 @@ ansible scripts to automatically deploy openstack components/cluster
 * [English](#overview)
 
 ## 介绍
-此项目以openstack官方安装教程为基, 用ansible来自动化安装openstack云计算元件
+此项目以openstack官方安装教程为基础, 用ansible来自动化安装openstack云计算元件
 
 ## 支持的官方安装教程
 * Mitaka
