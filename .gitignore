@@ -38,3 +38,7 @@ jspm_packages
 
 # Vagrant directories
 .vagrant/
+
+# Ansible configuration files
+ansible.cfg
+hosts
