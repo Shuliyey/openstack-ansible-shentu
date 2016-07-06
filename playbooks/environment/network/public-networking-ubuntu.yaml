@@ -3,12 +3,12 @@
     Ensure network configuration file in /etc/network/interfaces.d/* are sourced
   lineinfile: |
     dest=/etc/network/interfaces
-    regexp='^\s*source\s+/etc/network/interfaces\.d/\*\s*$'
+    regexp='^\s*source\s+/etc/network/interfaces\.d/\*.*$'
 - name: |
     Ensure "{{ ethernet }}" network interface configured set to manual
     permanently
   blockinfile:
-    dest: /etc/network/interfaces/{{ethernet}}.conf
+    dest: /etc/network/interfaces/{{ethernet}}.cfg
     block: |
       auto {{ ethernet }}
       iface {{ ethernet }} inet manual
