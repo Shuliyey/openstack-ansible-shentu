@@ -3,6 +3,8 @@ ansible自动化安装openstack云计算 元件/平台
 
 ansible scripts to automatically deploy openstack components/cluster
 
+## 语言/Язык/Language
+
 * [中文](#介绍)
 * [English](#overview)
 
