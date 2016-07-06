@@ -6,7 +6,7 @@ ansible scripts to automatically deploy openstack components/cluster
 ## 语言/Язык/Language
 
 * [中文](#介绍)
-* [Российская](#Общий обзор)
+* [Российская](#Общий)
 * [English](#overview)
 
 ## 介绍
