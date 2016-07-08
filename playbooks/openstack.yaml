@@ -12,4 +12,6 @@
         'controller' in networking_type or
         'compute' in networking_type
     - name: configure ntp server for {{ hosts }}
-      include: ./environment/network/networking.yaml
+      include: ./environment/ntp/chrony.yaml
+    - name: configure openstack {{ openstack-release }} package on {{ hosts }}
+      include: ./environment/package/package.yaml

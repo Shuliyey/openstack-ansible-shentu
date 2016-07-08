@@ -1,0 +1,18 @@
+---
+- name: ensure software-properties-common is installed on {{ hosts }}
+  apt: name=software-properties-common update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+- name: |
+    ensure openstack {{openstack-release}} packages is present in apt repository
+    {{ hosts }}
+  apt_repository: repo='cloud-archive:{{openstack-release}}' update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+- name: upgrade all packages & libraries on {{ hosts }} (including kernal)
+  apt: upgrade=dist
+  when: ansible_distribution == "Ubuntu"
+- name: ensure Openstack Client is installed
+  apt: name=python-openstackclient
+  when: ansible_distribution == "Ubuntu"
+- debug: |
+    msg="openstack {{openstack-release}} client is installed on {{ hosts }}"
+  when: debug
