@@ -1,0 +1,9 @@
+---
+- name: ensure software-properties-common is installed on {{ hosts }}
+  apt: name=software-properties-common update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+- name: ensure mariadb apt key is present
+  apt_key: |
+    url=keyserver.ubuntu.com:80
+    id=0xF1656F24C74CD1D8
+  when: ansible_distribution == "Ubuntu"
