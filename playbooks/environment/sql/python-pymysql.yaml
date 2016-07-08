@@ -1,0 +1,6 @@
+---
+- name: install python-pymysql (ubuntu)
+  apt: name=python-pymysql update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+- debug: msg="python-pymysql is installed on {{ hosts }}"
+  when: debug

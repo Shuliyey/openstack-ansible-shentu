@@ -29,7 +29,7 @@
     ansible_distribution == "Ubuntu" and
     (ansible_distribution_release == "willy" or
     ansible_distribution_release == "precise")
-- name: ensure mariadb is present (ubuntu)
+- name: install mariadb {{sql-version}} sql server (ubuntu)
   apt: name=mariadb-server
   when: ansible_distribution == "Ubuntu"
 - name: ensure mariadb is restarted

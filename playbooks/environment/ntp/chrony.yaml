@@ -4,5 +4,5 @@
   when: ansible_distribution == "Ubuntu"
 - name: ensure chrony ntp server is started
   service: name=chrony state=started
-- debug: msg="chrony is installed and started on {{ hosts }}""
+- debug: msg="chrony is installed and started on {{ hosts }}"
   when: debug
