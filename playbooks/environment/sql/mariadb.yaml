@@ -32,6 +32,20 @@
 - name: install mariadb {{sql-version}} sql server (ubuntu)
   apt: name=mariadb-server
   when: ansible_distribution == "Ubuntu"
+- name: ensure mariadb is configured correctly on {{ hosts }}
+  blockinfile:
+    dest: /etc/mysql/conf.d/openstack.cnf
+    owner: root
+    group: root
+    block: |
+      [mysqld]
+      bind-address = 0.0.0.0
+      default-storage-engine = innodb
+      innodb_file_per_table
+      max_connections = 4096
+      collation-server = utf8_general_ci
+      character-set-server = utf8
+    create: yes
 - name: ensure mariadb is restarted
   service: |
   name=mariadb-server state=restarted
