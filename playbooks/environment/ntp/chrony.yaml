@@ -1,0 +1,7 @@
+---
+- name: install chrony ntp server
+  apt: name=chrony update_cache=yes
+  name: ensure chrony ntp server is started
+  service: name=chrony state=started
+  debug: chrony is installed and started on {{ hosts }}
+  when: debug

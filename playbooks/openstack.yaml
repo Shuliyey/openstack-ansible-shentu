@@ -11,3 +11,5 @@
       when: |
         'controller' in networking_type or
         'compute' in networking_type
+    - name: configure ntp server for {{ hosts }}
+      include: ./environment/network/networking.yaml
