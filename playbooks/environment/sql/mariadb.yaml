@@ -48,4 +48,4 @@
     create: yes
 - name: ensure mariadb is restarted
   service: |
-  name=mariadb-server state=restarted
+  name=mysql state=restarted
