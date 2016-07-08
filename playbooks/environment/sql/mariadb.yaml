@@ -46,6 +46,6 @@
       collation-server = utf8_general_ci
       character-set-server = utf8
     create: yes
-- name: ensure mariadb is restarted
+- name: ensure mariadb sql server is restarted
   service: |
   name=mysql state=restarted
