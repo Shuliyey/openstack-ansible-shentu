@@ -2,8 +2,36 @@
 - name: ensure software-properties-common is installed on {{ hosts }}
   apt: name=software-properties-common update_cache=yes
   when: ansible_distribution == "Ubuntu"
-- name: ensure mariadb apt key is present
+- name: ensure mariadb apt key is present (ubuntu)
   apt_key: |
     url=keyserver.ubuntu.com:80
     id=0xF1656F24C74CD1D8
   when: ansible_distribution == "Ubuntu"
+- name: |
+    ensure mariadb {{ sql-version }} repository is present (ubuntu
+    {{ ansible_distribution_release }})
+  apt_repository: |
+    repo="deb [arch=amd64,i386,ppc64el]
+    http://mariadb.mirror.digitalpacific.com.au/repo/{{ sql-version }}/ubuntu
+    {{ ansible_distribution_release }} main" update_cache=yes
+  when: |
+    ansible_distribution == "Ubuntu" and
+    (ansible_distribution_release == "trusty" or
+    ansible_distribution_release == "xenial")
+- name: |
+    ensure mariadb {{sql-version}} repository is present (ubuntu
+    {{ ansible_distribution_release }})
+  apt_repository: |
+    repo="deb [arch=amd64,i386]
+    http://mariadb.mirror.digitalpacific.com.au/repo/{{ sql-version }}/ubuntu
+    {{ ansible_distribution_release }} main" update_cache=yes
+  when: |
+    ansible_distribution == "Ubuntu" and
+    (ansible_distribution_release == "willy" or
+    ansible_distribution_release == "precise")
+- name: ensure mariadb is present (ubuntu)
+  apt: name=mariadb-server
+  when: ansible_distribution == "Ubuntu"
+- name: ensure mariadb is restarted
+  service: |
+  name=mariadb-server state=restarted
